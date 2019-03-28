@@ -8,7 +8,7 @@ public class ContaLaboratorio {
 	private int espacoOcupado = 0 ;
 	private int cota;
 	
-	
+
 	
 	public ContaLaboratorio(String nomeLaboratorio) { // Construtor 1
 		this.nomeLaboratorio = nomeLaboratorio;
