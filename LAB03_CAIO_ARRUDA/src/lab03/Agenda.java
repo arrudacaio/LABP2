@@ -4,6 +4,7 @@ public class Agenda {
 	private Contato[] arrayContatos;
 
 	public Agenda() {
+
 		this.arrayContatos = new Contato[100];
 	}
 
@@ -21,5 +22,14 @@ public class Agenda {
 		} else {
 			return arrayContatos[posicao - 1].toString();
 		}
+	}
+
+	public void listarContato(){
+		for (int i = 0; i < this.arrayContatos.length; i++){
+			if (this.arrayContatos[i] != null){
+				return i++ + this.arrayContatos[i].imprimeContato();
+			}
+		}
+
 	}
 }

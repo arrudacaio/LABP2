@@ -46,6 +46,8 @@ public class Sistema {
 			}
 
 			else if (entrada.equals("L")) {
+				System.out.println(agenda.listarContato());
+
 
 			} else if (entrada.equals("E")) {
 				int contatoDesejado;
