@@ -34,8 +34,10 @@ public class Agenda {
 	 *         cadastro
 	 */
 	public boolean cadastraContato(String nome, String sobrenome, String numero, int posicao) {
+		verificaNomeNulo(nome);
+		verificaNomeVazio(nome);
 		if (posicao >= 1 && posicao <= 100) {
-			this.arrayContatos[posicao-1] = new Contato(nome, sobrenome, numero);
+			this.arrayContatos[posicao - 1] = new Contato(nome, sobrenome, numero);
 			return true;
 		}
 		return false;
@@ -49,10 +51,10 @@ public class Agenda {
 	 */
 
 	public String exibeContato(int posicao) {
-		if (posicao < 1 || posicao > 100 || this.arrayContatos[posicao-1] == null) {
+		if (posicao < 1 || posicao > 100 || this.arrayContatos[posicao - 1] == null) {
 			return "POSIÇÃO INVÁLIDA!";
 		} else {
-			return arrayContatos[posicao-1].toString();
+			return arrayContatos[posicao - 1].toString();
 		}
 	}
 
@@ -65,12 +67,38 @@ public class Agenda {
 		String texto = "";
 		for (int i = 0; i < this.arrayContatos.length; i++) {
 			if (this.arrayContatos[i] != null) {
-				texto += i+1  + this.arrayContatos[i].imprimeContato() + "\n";
+				texto += i + 1 + this.arrayContatos[i].imprimeContato() + "\n";
 			}
 		}
 		return texto;
 	}
+	
+	/**
+	 * Verifica se o nome passado como parametro é vazio
+	 * @param nome nome do contato
+	 */
+	public void verificaNomeVazio(String nome){
+		if (nome.equals("") || nome.trim() == "") {
+			throw new IllegalArgumentException("String vazia!");
+		}
+		
 
+	}
+	/**
+	 * Verifica se o nome passado como parametro é nulo
+	 * @param nome nome do contato
+	 */
+	
+	public void verificaNomeNulo(String nome) {
+		if  (nome == null) {
+			throw new NullPointerException("String nula!");
+		}
+		
+	}
+
+	/**
+	 * Gera o hashCode
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -79,6 +107,9 @@ public class Agenda {
 		return result;
 	}
 
+	/**
+	 * Gera o método equals
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)

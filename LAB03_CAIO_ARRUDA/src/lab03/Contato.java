@@ -9,6 +9,7 @@ package lab03;
  * 
  */
 public class Contato {
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -62,6 +63,8 @@ public class Contato {
 	 * @param numero    telefone do contato
 	 */
 	public Contato(String nome, String sobrenome, String numero) {
+		verificaNomeNulo(nome);
+		verificaNomeVazio(nome);
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.numero = numero;
@@ -130,7 +133,7 @@ public class Contato {
 	 */
 
 	public String toString() {
-		return this.getNome() + " " + this.getSobrenome() + " " +"-" + " "+ this.getNumero();
+		return this.getNome() + " " + this.getSobrenome() + " " + "-" + " " + this.getNumero();
 	}
 
 	/**
@@ -140,6 +143,31 @@ public class Contato {
 	 */
 	public String imprimeContato() {
 		return " " + "-" + " " + this.getNome() + " " + this.getSobrenome();
+	}
+
+	/**
+	 * Verifica se o nome passado como parametro é vazio
+	 * 
+	 * @param nome nome do contato
+	 */
+	public void verificaNomeVazio(String nome) {
+		if (nome.equals("") || nome.trim() == "") {
+			throw new IllegalArgumentException("String vazia!");
+		}
+
+	}
+
+	/**
+	 * Verifica se o nome passado como parametro é nulo
+	 * 
+	 * @param nome nome do contato
+	 */
+
+	public void verificaNomeNulo(String nome) {
+		if (nome == null) {
+			throw new NullPointerException("String nula!");
+		}
+
 	}
 
 }

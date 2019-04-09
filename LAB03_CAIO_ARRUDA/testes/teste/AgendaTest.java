@@ -1,5 +1,5 @@
+package teste;
 import static org.junit.jupiter.api.Assertions.*;
-
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -16,6 +16,9 @@ class AgendaTest {
 		this.agenda2 = new Agenda();
 		agenda1.cadastraContato("Caio", "Arruda", "4002 8922", 1);
 	}
+	/**
+	 * Verifica se duas agendas são iguais
+	 */
 
 	@Test
 	void testAgendasIguais() {
@@ -24,6 +27,9 @@ class AgendaTest {
 		assertTrue(agenda1.equals(agenda2));
 	}
 
+	/**
+	 * Verifica o cadastro dos contatos
+	 */
 	@Test
 	void testCadastraContatos() {
 		assertTrue(agenda1.cadastraContato("Caio", "Arruda", "4002 8922", 1));
@@ -33,6 +39,9 @@ class AgendaTest {
 
 	}
 
+	/**
+	 * Verifica o método de exibir os contatos
+	 */
 	@Test
 	void testExibeContatos() {
 		assertEquals("POSIÇÃO INVÁLIDA!", agenda1.exibeContato(0));
@@ -42,9 +51,38 @@ class AgendaTest {
 
 	}
 
+	/**
+	 * Verifica o método de listar os contatos
+	 */
 	@Test
 	void testListarContatos() {
 		assertEquals("1 - Caio Arruda\n", agenda1.listarContato());
 
 	}
+
+	/**
+	 * Verifica se o nome é nulo
+	 */
+	@Test
+	void testNomeNull() {
+		try {
+			assertTrue(agenda1.cadastraContato(null, "Arruda", "4002 8922", 1));
+		} catch (NullPointerException npe) {
+
+			assertEquals(npe.getMessage(), "String nula!");
+		}
+	}
+
+	/**
+	 * Verifica se o nome é vazio
+	 */
+	@Test
+	void testNomeVazio() {
+		try {
+			assertTrue(agenda1.cadastraContato("", "Arruda", "4002 8922", 1));
+		} catch (IllegalArgumentException npe) {
+			assertEquals(npe.getMessage(), "String vazia!");
+		}
+	}
+
 }
