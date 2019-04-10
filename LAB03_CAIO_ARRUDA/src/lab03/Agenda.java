@@ -36,6 +36,10 @@ public class Agenda {
 	public boolean cadastraContato(String nome, String sobrenome, String numero, int posicao) {
 		verificaNomeNulo(nome);
 		verificaNomeVazio(nome);
+		verificaSobrenomeNulo(sobrenome);
+		verificaSobrenomeVazio(sobrenome);
+		verificaNumeroNulo(numero);
+		verificaNumeroVazio(numero);
 		if (posicao >= 1 && posicao <= 100) {
 			this.arrayContatos[posicao - 1] = new Contato(nome, sobrenome, numero);
 			return true;
@@ -72,28 +76,80 @@ public class Agenda {
 		}
 		return texto;
 	}
-	
+
 	/**
 	 * Verifica se o nome passado como parametro é vazio
+	 * 
 	 * @param nome nome do contato
 	 */
-	public void verificaNomeVazio(String nome){
+	public void verificaNomeVazio(String nome) {
 		if (nome.equals("") || nome.trim() == "") {
 			throw new IllegalArgumentException("String vazia!");
 		}
-		
 
 	}
+
 	/**
 	 * Verifica se o nome passado como parametro é nulo
+	 * 
 	 * @param nome nome do contato
 	 */
-	
+
 	public void verificaNomeNulo(String nome) {
-		if  (nome == null) {
+		if (nome == null) {
 			throw new NullPointerException("String nula!");
 		}
-		
+
+	}
+
+	/**
+	 * Verifica se o Sobrenome passado como parametro é vazio
+	 * 
+	 * @param sobrenome sobrenome do contato
+	 */
+	public void verificaSobrenomeVazio(String sobrenome) {
+		if (sobrenome.equals("") || sobrenome.trim() == "") {
+			throw new IllegalArgumentException("String vazia!");
+		}
+
+	}
+
+	/**
+	 * Verifica se o sobrenome passado como parametro é nulo
+	 * 
+	 * @param sobrenome sobrenome do contato
+	 */
+
+	public void verificaSobrenomeNulo(String sobrenome) {
+		if (sobrenome == null) {
+			throw new NullPointerException("String nula!");
+		}
+
+	}
+
+	/**
+	 * Verifica se o número de telefone passado como parametro é vazio
+	 * 
+	 * @param numero numero do contato
+	 */
+	public void verificaNumeroVazio(String numero) {
+		if (numero.equals("") || numero.trim() == "") {
+			throw new IllegalArgumentException("String vazia!");
+		}
+
+	}
+
+	/**
+	 * Verifica se o número de telefone passado como parametro é nulo
+	 * 
+	 * @param numero numero do contato
+	 */
+
+	public void verificaNumeroNulo(String numero) {
+		if (numero == null) {
+			throw new NullPointerException("String nula!");
+		}
+
 	}
 
 	/**

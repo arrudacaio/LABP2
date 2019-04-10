@@ -1,4 +1,5 @@
 package teste;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -16,6 +17,7 @@ class AgendaTest {
 		this.agenda2 = new Agenda();
 		agenda1.cadastraContato("Caio", "Arruda", "4002 8922", 1);
 	}
+
 	/**
 	 * Verifica se duas agendas são iguais
 	 */
@@ -80,6 +82,56 @@ class AgendaTest {
 	void testNomeVazio() {
 		try {
 			assertTrue(agenda1.cadastraContato("", "Arruda", "4002 8922", 1));
+		} catch (IllegalArgumentException npe) {
+			assertEquals(npe.getMessage(), "String vazia!");
+		}
+	}
+
+	/**
+	 * Verifica se o sobrenome é nulo
+	 */
+	@Test
+	void testSobrenomeNull() {
+		try {
+			assertTrue(agenda1.cadastraContato("Caio", null, "4002 8922", 1));
+		} catch (NullPointerException npe) {
+
+			assertEquals(npe.getMessage(), "String nula!");
+		}
+	}
+
+	/**
+	 * Verifica se o sobrenome é vazio
+	 */
+	@Test
+	void testSobrenomeVazio() {
+		try {
+			assertTrue(agenda1.cadastraContato("Caio", "", "4002 8922", 1));
+		} catch (IllegalArgumentException npe) {
+			assertEquals(npe.getMessage(), "String vazia!");
+		}
+	}
+	
+	/**
+	 * Verifica se o número de telefone é nulo
+	 */
+	@Test
+	void testNumeroNull() {
+		try {
+			assertTrue(agenda1.cadastraContato("Caio", "Arruda", null , 1));
+		} catch (NullPointerException npe) {
+
+			assertEquals(npe.getMessage(), "String nula!");
+		}
+	}
+	
+	/**
+	 * Verifica se o número de telefone é vazio
+	 */
+	@Test
+	void testNumeroVazio() {
+		try {
+			assertTrue(agenda1.cadastraContato("Caio", "Arruda", "", 1));
 		} catch (IllegalArgumentException npe) {
 			assertEquals(npe.getMessage(), "String vazia!");
 		}

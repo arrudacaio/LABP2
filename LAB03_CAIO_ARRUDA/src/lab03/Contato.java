@@ -9,7 +9,9 @@ package lab03;
  * 
  */
 public class Contato {
-	
+	/**
+	 * Gera uma representação em número inteiro de um HashCode
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -19,6 +21,9 @@ public class Contato {
 		return result;
 	}
 
+	/**
+	 * Gera um método equals, para comparar os objetos
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -65,6 +70,10 @@ public class Contato {
 	public Contato(String nome, String sobrenome, String numero) {
 		verificaNomeNulo(nome);
 		verificaNomeVazio(nome);
+		verificaSobrenomeNulo(sobrenome);
+		verificaSobrenomeVazio(sobrenome);
+		verificaNumeroNulo(numero);
+		verificaNumeroVazio(numero);
 		this.nome = nome;
 		this.sobrenome = sobrenome;
 		this.numero = numero;
@@ -170,4 +179,51 @@ public class Contato {
 
 	}
 
+	/**
+	 * Verifica se o Sobrenome passado como parametro é vazio
+	 * 
+	 * @param sobrenome sobrenome do contato
+	 */
+	public void verificaSobrenomeVazio(String sobrenome) {
+		if (sobrenome.equals("") || sobrenome.trim() == "") {
+			throw new IllegalArgumentException("String vazia!");
+		}
+
+	}
+
+	/**
+	 * Verifica se o sobrenome passado como parametro é nulo
+	 * 
+	 * @param sobrenome sobrenome do contato
+	 */
+
+	public void verificaSobrenomeNulo(String sobrenome) {
+		if (sobrenome == null) {
+			throw new NullPointerException("String nula!");
+		}
+	}
+
+	/**
+	 * Verifica se o número de telefone passado como parametro é vazio
+	 * 
+	 * @param numero numero do contato
+	 */
+	public void verificaNumeroVazio(String numero) {
+		if (numero.equals("") || numero.trim() == "") {
+			throw new IllegalArgumentException("String vazia!");
+		}
+
+	}
+
+	/**
+	 * Verifica se o número de telefone passado como parametro é nulo
+	 * 
+	 * @param numero numero do contato
+	 */
+
+	public void verificaNumeroNulo(String numero) {
+		if (numero == null) {
+			throw new NullPointerException("String nula!");
+		}
+	}
 }

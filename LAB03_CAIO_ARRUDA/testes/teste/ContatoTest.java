@@ -1,4 +1,5 @@
 package teste;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -10,7 +11,6 @@ class ContatoTest {
 	private Contato contato1;
 	private Contato contato2;
 	private Contato contato3;
-	
 
 	@BeforeEach
 	void setup() {
@@ -27,6 +27,7 @@ class ContatoTest {
 		assertTrue(contato1.equals(contato2));
 
 	}
+
 	/**
 	 * Verifica o construtor de um contato
 	 */
@@ -39,6 +40,7 @@ class ContatoTest {
 		assertEquals("Arruda", this.contato2.getSobrenome());
 		assertEquals("84 90203-6569", this.contato2.getNumero());
 	}
+
 	/**
 	 * Verifica o to string do contato, no caso, a mensagem de retorno
 	 */
@@ -49,7 +51,8 @@ class ContatoTest {
 	}
 
 	/**
-	 * Verifica o imprime contato,no caso, a mensagem de retorno na chamada do método
+	 * Verifica o imprime contato,no caso, a mensagem de retorno na chamada do
+	 * método
 	 */
 	@Test
 	void testImprimeContato() {
@@ -76,10 +79,59 @@ class ContatoTest {
 	@Test
 	void testNomeVazio() {
 		try {
-			contato3 = new Contato("","Arruda","5520 2356");
+			contato3 = new Contato("", "Arruda", "5520 2356");
 		} catch (IllegalArgumentException npe) {
 			assertEquals(npe.getMessage(), "String vazia!");
 		}
 	}
 
+	/**
+	 * Verifica se o sobrenome é nulo
+	 */
+	@Test
+	void testSobrenomeNull() {
+		try {
+			contato3 = new Contato("Caio", null, "8820 5065");
+		} catch (NullPointerException npe) {
+
+			assertEquals(npe.getMessage(), "String nula!");
+		}
+	}
+
+	/**
+	 * Verifica se o sobrenome é vazio
+	 */
+	@Test
+	void testSobrenomeVazio() {
+		try {
+			contato3 = new Contato("Caio", "", "5520 2356");
+		} catch (IllegalArgumentException npe) {
+			assertEquals(npe.getMessage(), "String vazia!");
+		}
+	}
+
+	/**
+	 * Verifica se o número de telefone é nulo
+	 */
+	@Test
+	void testNumeroNull() {
+		try {
+			contato3 = new Contato("Caio", "Arruda", null);
+		} catch (NullPointerException npe) {
+
+			assertEquals(npe.getMessage(), "String nula!");
+		}
+	}
+
+	/**
+	 * Verifica se o número de telefone é vazio
+	 */
+	@Test
+	void testNumeroVazio() {
+		try {
+			contato3 = new Contato("Caio", "Arruda", "");
+		} catch (IllegalArgumentException npe) {
+			assertEquals(npe.getMessage(), "String vazia!");
+		}
+	}
 }
