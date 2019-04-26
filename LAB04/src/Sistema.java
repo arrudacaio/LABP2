@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Sistema {
@@ -17,9 +18,12 @@ public class Sistema {
 
 	public static void main(String[] args) {
 		menu();
+		HashMap<String, Aluno> mapaMatriculaAlunos = new HashMap<>();
+		ControleDeAlunos controle = new ControleDeAlunos(mapaMatriculaAlunos);
 		Scanner sc = new Scanner(System.in);
 		String entrada, matricula, nome, curso;
 
+		
 		do {
 			entrada = sc.nextLine();
 			if (entrada.equals("C")) {
@@ -29,12 +33,10 @@ public class Sistema {
 				nome = sc.nextLine();
 				System.out.print("Curso: ");
 				curso = sc.nextLine();
-
-				// CADASTRAR EM UM CONTROLE DE ALUNOS, POIS AQUI SÓ DEVE SER ENTRADA E SAÍDA DE
-				// DADOS!!!
-				// vou precisar criar um aluno aqui
-				// Isolaaaaaaaaaar
-				// chamar esse controle e chamar um méotod pra cadastrar?
+				controle.cadastraAlunos(matricula, nome, curso);
+				//PRINTAR
+				//controle.cadastraAlunos(matricula, nome, curso);
+				//NAO TA RETORNANDO GRR
 
 			} else if (entrada.equals("E")) {
 
