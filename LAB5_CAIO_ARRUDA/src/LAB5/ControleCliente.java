@@ -16,11 +16,19 @@ public class ControleCliente {
 		if (!this.clientesCadastrados.containsKey(cpf)) {
 			this.clientesCadastrados.put(cpf, new Cliente(nome, email, local, cpf));
 			return cpf;
-		} throw new IllegalArgumentException("Cliente já cadastrado."); 
+		}
+		throw new IllegalArgumentException("Cliente já cadastrado.");
 
 	}
-	
-	
-	
+
+	public String imprimeClientesCadastrados() {
+		String result = "";
+		for (Cliente cliente : this.clientesCadastrados) {
+			result += cliente.toString() + " |  \n";
+
+		}
+		return result;
+
+	}
 
 }
