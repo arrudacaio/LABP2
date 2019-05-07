@@ -21,19 +21,18 @@ public class ControleCliente {
 		throw new IllegalArgumentException("Cliente já cadastrado.");
 
 	}
-	
+
 	public String editaCadastraCliente(String cpf, String nome, String email, String local) {
 		this.clientesCadastrados.get(cpf).setNome(nome);
 		this.clientesCadastrados.get(cpf).setEmail(email);
 		this.clientesCadastrados.get(cpf).setLocal(local);
 		return "Cadastro do Cliente editado.";
 	}
-	
+
 	public String removeClienteCadastrado(String cpf) {
 		this.clientesCadastrados.remove(cpf);
 		return "Cliente Removido!";
 	}
-	
 
 	public String imprimeCliente(String cpf) {
 		return this.clientesCadastrados.get(cpf).toString();
@@ -43,9 +42,9 @@ public class ControleCliente {
 		String result = "";
 		Set<String> chaves = this.clientesCadastrados.keySet();
 		for (String chave : chaves) {
-			result += this.clientesCadastrados.get(chave).toString() + " |  \n";
-
+			result += this.clientesCadastrados.get(chave).toString() + " | ";
 		}
+
 		return result;
 
 	}

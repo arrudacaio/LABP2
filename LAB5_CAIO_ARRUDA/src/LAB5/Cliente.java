@@ -5,58 +5,47 @@ public class Cliente {
 	private String email;
 	private String local;
 	private String cpf;
-	
-	
+
 	public Cliente(String nome, String email, String local, String cpf) {
 		this.nome = nome;
 		this.email = email;
 		this.local = local;
 		this.cpf = cpf;
-		
-	}
 
+	}
 
 	public String getNome() {
 		return nome;
 	}
 
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
 
 	public String getEmail() {
 		return email;
 	}
 
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
 
 	public String getLocal() {
 		return local;
 	}
 
-
 	public void setLocal(String local) {
 		this.local = local;
 	}
-
 
 	public String getCpf() {
 		return cpf;
 	}
 
-
-
 	@Override
 	public String toString() {
 		return nome + " - " + local + " - " + email;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -65,7 +54,6 @@ public class Cliente {
 		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -83,7 +71,5 @@ public class Cliente {
 			return false;
 		return true;
 	}
-	
-	
-	
+
 }
