@@ -30,4 +30,26 @@ public class Validacao {
 
 	}
 
+	public void verificaCadastraFornecedor(String nome, String email, String telefone) {
+		if (nome == null) {
+			throw new NullPointerException("Nome nulo!");
+		}
+		if (nome.equals("") || nome.trim() == "") {
+			throw new IllegalArgumentException("Nome vazio!");
+		}
+		if (email == null) {
+			throw new NullPointerException("Email nulo!");
+		}
+		if (email.equals("") || email.trim() == "") {
+			throw new IllegalArgumentException("Email vazio!");
+		}
+		if (telefone == null) {
+			throw new NullPointerException("Telefone nulo!");
+		}
+		if (telefone.equals("") || telefone.trim() == "") {
+			throw new IllegalArgumentException("Telefone vazio!");
+		}
+
+	}
+
 }

@@ -22,16 +22,23 @@ public class ControleCliente {
 
 	}
 
-	public String editaCadastraCliente(String cpf, String nome, String email, String local) {
-		this.clientesCadastrados.get(cpf).setNome(nome);
-		this.clientesCadastrados.get(cpf).setEmail(email);
-		this.clientesCadastrados.get(cpf).setLocal(local);
-		return "Cadastro do Cliente editado.";
+	public boolean  editaCadastraCliente(String cpf, String nome, String email, String local) {
+		if(this.clientesCadastrados.containsKey(cpf)) {
+			this.clientesCadastrados.get(cpf).setNome(nome);
+			this.clientesCadastrados.get(cpf).setEmail(email);
+			this.clientesCadastrados.get(cpf).setLocal(local);
+			return true;
+		}
+		return false;
 	}
 
-	public String removeClienteCadastrado(String cpf) {
-		this.clientesCadastrados.remove(cpf);
-		return "Cliente Removido!";
+	public boolean removeClienteCadastrado(String cpf) {
+		if(!this.clientesCadastrados.containsKey(cpf)) {
+			throw new IllegalArgumentException("Cpf não cadastrado.");
+		} else {
+			this.clientesCadastrados.remove(cpf);
+			return true;
+		}
 	}
 
 	public String imprimeCliente(String cpf) {
@@ -44,9 +51,11 @@ public class ControleCliente {
 		for (String chave : chaves) {
 			result += this.clientesCadastrados.get(chave).toString() + " | ";
 		}
-
-		return result;
-
+		if (result.equals("")) {
+			return "Nenhum cliente cadastrado";
+		} else {
+			return result.substring(0, result.length()-3);
+		}
 	}
 
 }
