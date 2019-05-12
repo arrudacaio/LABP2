@@ -13,21 +13,35 @@ public class ControleCliente {
 	}
 
 	public String cadastraCliente(String nome, String email, String local, String cpf) {
-		validacao.verificaCadastraCliente(nome, email, local, cpf);
+		validacao.verificaCadastraCliente(cpf,nome, email, local);
 		if (!this.clientesCadastrados.containsKey(cpf)) {
 			this.clientesCadastrados.put(cpf, new Cliente(nome, email, local, cpf));
 			return cpf;
 		}
-		throw new IllegalArgumentException("Cliente já cadastrado.");
+		throw new IllegalArgumentException("Erro no cadastro do cliente: cliente ja existe.");
 
 	}
 
-	public boolean  editaCadastraCliente(String cpf, String nome, String email, String local) {
-		if(this.clientesCadastrados.containsKey(cpf)) {
-			this.clientesCadastrados.get(cpf).setNome(nome);
-			this.clientesCadastrados.get(cpf).setEmail(email);
-			this.clientesCadastrados.get(cpf).setLocal(local);
-			return true;
+	public boolean  editaCadastraCliente(String cpf, String atributo, String novoValor) {
+		validacao.verificaEditaCadastraCliente(cpf, atributo, novoValor);
+		
+		if(atributo.equals("nome")) {
+			if(this.clientesCadastrados.containsKey(cpf)) {
+				this.clientesCadastrados.get(cpf).setNome(novoValor);
+				return true;
+			}
+		} else if (atributo.equals("email")) {
+			if(this.clientesCadastrados.containsKey(cpf)) {
+				this.clientesCadastrados.get(cpf).setEmail(novoValor);
+				return true;
+			}
+		} else if (atributo.equals("localizacao")) {
+			if(this.clientesCadastrados.containsKey(cpf)) {
+				this.clientesCadastrados.get(cpf).setLocal(novoValor);
+				return true;
+			}
+		} else {
+			throw new IllegalArgumentException("Erro na edicao do cliente: atributo nao existe.");
 		}
 		return false;
 	}

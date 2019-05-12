@@ -9,19 +9,19 @@ public class Facade {
 		this.controleFornecedor = new ControleFornecedor();
 	}
 
-	public String cadastraCliente(String nome, String email, String local, String cpf) {
-		return this.controleCliente.cadastraCliente(nome, email, local, cpf);
+	public String adicionaCliente(String cpf,String nome, String email, String localizacao) {
+		return this.controleCliente.cadastraCliente(nome, email, localizacao, cpf);
 	}
 
-	public boolean editaCadastraCliente(String cpf, String nome, String email, String local) {
-		return this.controleCliente.editaCadastraCliente(cpf, nome, email, local);
+	public boolean editaCliente(String cpf, String atributo, String novoValor) {
+		return this.controleCliente.editaCadastraCliente(cpf,atributo, novoValor);
 	}
 
 	public boolean removeClienteCadastrado(String cpf) {
 		return this.controleCliente.removeClienteCadastrado(cpf);
 	}
 
-	public String imprimeCliente(String cpf) {
+	public String exibeCliente(String cpf) {
 		return this.controleCliente.imprimeCliente(cpf);
 	}
 
@@ -29,7 +29,7 @@ public class Facade {
 		return this.controleCliente.imprimeClientesCadastrados();
 	}
 	
-	public boolean cadastraFornecedor(String nome, String email, String telefone) {
+	public boolean adicionaFornecedor(String nome, String email, String telefone) {
 		return this.controleFornecedor.cadastraFornecedor(nome, email, telefone);
 	}
 	
@@ -37,11 +37,11 @@ public class Facade {
 		return this.controleFornecedor.editaFornecedorCadastrado(nome, email, telefone);
 	}
 	
-	public boolean removeFornecedorCadastrado(String nome, String email, String telefone) {
+	public boolean removeFornecedor(String nome, String email, String telefone) {
 		return this.controleFornecedor.removeFornecedorCadastrado(nome);
 	}
 	
-	public String imprimeFornecedor(String nome) {
+	public String exibeFornecedor(String nome) {
 		return this.controleFornecedor.imprimeFornecedor(nome);
 	}
 	

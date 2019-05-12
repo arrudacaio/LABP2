@@ -44,7 +44,7 @@ public class Cliente {
 
 	@Override
 	public String toString() {
-		return nome + " - " + local + " - " + email;
+		return this.nome + " - " + this.local + " - " + this.email;
 	}
 
 	@Override

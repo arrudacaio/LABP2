@@ -5,10 +5,12 @@ import java.util.Set;
 
 public class ControleFornecedor {
 	private HashMap<String,Fornecedor> fornecedorCadastrados;
+	private HashMap<String, Produto> mapaProdutos;
 	private Validacao validacao;
 	
 	public ControleFornecedor() {
 		this.fornecedorCadastrados = new HashMap<>();
+		this.mapaProdutos = new HashMap<>();
 		this.validacao = new Validacao();
 	}
 	
@@ -18,22 +20,35 @@ public class ControleFornecedor {
 			this.fornecedorCadastrados.put(nome, new Fornecedor(nome,email,telefone));
 			return true;
 		}
-		return false;
+		throw new IllegalArgumentException("Erro no cadastro de fornecedor: fornecedor ja existe.");
 	}
 	
-	public boolean editaFornecedorCadastrado(String nome, String email, String telefone) {
-		if(this.fornecedorCadastrados.containsKey(nome)) {
-			this.fornecedorCadastrados.get(nome).setEmail(email);
-			this.fornecedorCadastrados.get(nome).setTelefone(telefone);
-			return true;
+	public boolean editaFornecedorCadastrado(String nome, String atributo, String novoValor) {
+		this.validacao.verificaEditaFornecedor(nome, atributo, novoValor);
+		if (atributo.equals("nome")) {
+			throw new IllegalArgumentException("Erro na edicao do fornecedor: nome nao pode ser editado");
 		}
+		if(atributo.equals("email")) {
+			if(this.fornecedorCadastrados.containsKey(nome)) {
+				this.fornecedorCadastrados.get(nome).setEmail(novoValor);
+				return true;
+			}
+		} else if(atributo.equals("telefone")) {
+			if(this.fornecedorCadastrados.containsKey(nome)) {
+				this.fornecedorCadastrados.get(nome).setTelefone(novoValor);
+				return true;
+			}
+		} else {
+			throw new IllegalArgumentException("Erro na edicao do fornecedor: atributo nao existe.");
+		}
+
 		return false;
-		
 	}
 	
 	public boolean removeFornecedorCadastrado(String nome) {
+		this.validacao.verificaRemoveFornecedor(nome);
 		if(!this.fornecedorCadastrados.containsKey(nome)) {
-			throw new IllegalArgumentException("Fornecedor não cadastrado");
+			throw new IllegalArgumentException("Erro na exibicao do fornecedor: fornecedor nao existe.");
 		} else {
 			this.fornecedorCadastrados.remove(nome);
 			return true;
@@ -41,7 +56,10 @@ public class ControleFornecedor {
 	}
 	
 	public String imprimeFornecedor(String nome) {
-		return this.fornecedorCadastrados.get(nome).toString();
+		if(this.fornecedorCadastrados.get(nome) != null) {
+			return this.fornecedorCadastrados.get(nome).toString();
+		}
+		throw new IllegalArgumentException("Erro na exibicao do fornecedor: fornecedor nao existe.");
 		
 	}
 	
@@ -60,5 +78,12 @@ public class ControleFornecedor {
 	}
 	
 
+	public boolean cadastraProdutoFornecedor(String nomeFornecedor, String nome, String descricao, double preco) {
+		if(this.fornecedorCadastrados.containsKey(nomeFornecedor)) {
+			this.mapaProdutos.put(nome+descricao, new Produto(nome, descricao, preco));
+			
+		}
+		
+	}
 	
 }
