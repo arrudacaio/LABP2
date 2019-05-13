@@ -5,12 +5,10 @@ import java.util.Set;
 
 public class ControleFornecedor {
 	private HashMap<String,Fornecedor> fornecedorCadastrados;
-	private HashMap<String, Produto> mapaProdutos;
 	private Validacao validacao;
 	
 	public ControleFornecedor() {
 		this.fornecedorCadastrados = new HashMap<>();
-		this.mapaProdutos = new HashMap<>();
 		this.validacao = new Validacao();
 	}
 	
@@ -78,12 +76,20 @@ public class ControleFornecedor {
 	}
 	
 
-	public boolean cadastraProdutoFornecedor(String nomeFornecedor, String nome, String descricao, double preco) {
-		if(this.fornecedorCadastrados.containsKey(nomeFornecedor)) {
-			this.mapaProdutos.put(nome+descricao, new Produto(nome, descricao, preco));
-			
-		}
+	public boolean cadastraProdutoFornecedor(String nomeF, String nome, String descricao, double preco) {
+		return this.fornecedorCadastrados.get(nomeF).cadastraProdutos(nome, descricao, preco);
 		
 	}
+	
+	
+	public String exibeProdutoFornecedor(String nomeF, String nome, String descricao) {
+		return this.fornecedorCadastrados.get(nomeF).exibeProduto(nome, descricao);
+	}
+
+	public String imprimeTodosProdutos(String nomeF) {
+		return this.fornecedorCadastrados.get(nomeF).imprimeTodosProdutos();
+	}
+	
+	
 	
 }

@@ -4,11 +4,13 @@ public class Fornecedor {
 	private String nome;
 	private String email;
 	private String telefone;
+	private ControleProdutos controleProdutos;
 
 	public Fornecedor(String nome, String email, String telefone) {
 		this.nome = nome;
 		this.email = email;
 		this.telefone = telefone;
+		this.controleProdutos = new ControleProdutos();
 	}
 
 	public String getNome() {
@@ -61,4 +63,16 @@ public class Fornecedor {
 		return true;
 	}
 
+	public boolean cadastraProdutos(String nome, String descricao, double preco) {
+		return this.controleProdutos.cadastraProdutos(nome, descricao, preco);
+	}
+
+	public String exibeProduto(String nome, String descricao) {
+		return this.controleProdutos.exibeProduto(nome, descricao);
+		
+	}
+	
+	public String imprimeTodosProdutos() {
+		return this.controleProdutos.imprimeTodosProdutos();
+	}
 }
