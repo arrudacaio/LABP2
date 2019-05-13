@@ -109,4 +109,64 @@ public class Validacao {
 			throw new IllegalArgumentException("Erro na remocao do fornecedor: nome do fornecedor nao pode ser vazio.");
 		}
 	}
+	
+	public void cadastraProdutos(String fornecedor,String nome, String descricao, double preco) {
+		if(fornecedor == null) {
+			throw new NullPointerException("Erro no cadastro de produto: fornecedor nao pode ser vazio ou nulo.");
+		} 
+		if(fornecedor.equals("") || fornecedor.trim() == "") {
+			throw new IllegalArgumentException("Erro no cadastro de produto: fornecedor nao pode ser vazio ou nulo.");
+		}
+		if(nome == null) {
+			throw new NullPointerException("Erro no cadastro de produto: nome nao pode ser vazio ou nulo.");
+		} 
+		if(nome.equals("") || nome.trim() == "") {
+			throw new IllegalArgumentException("Erro no cadastro de produto: nome nao pode ser vazio ou nulo.");
+		}
+		if(descricao == null) {
+			throw new NullPointerException("Erro no cadastro de produto: descricao nao pode ser vazia ou nula.");
+		} 
+		if(descricao.equals("") || descricao.trim() == "") {
+			throw new IllegalArgumentException("Erro no cadastro de produto: descricao nao pode ser vazia ou nula.");
+		}
+		if (preco<0) {
+			throw new IllegalArgumentException("Erro no cadastro de produto: preco invalido.");
+		}
+		
+	}
+  
+	public void editaProduto(String nome, String descricao, double preco) {
+		if(nome == null) {
+			throw new NullPointerException("Erro na edicao de produto: nome nao pode ser vazio ou nulo.");
+		} 
+		if(nome.equals("") || nome.trim() == "") {
+			throw new IllegalArgumentException("Erro na edicao de produto: nome nao pode ser vazio ou nulo.");
+		}
+		if(descricao == null) {
+			throw new NullPointerException("Erro na edicao de produto: descricao nao pode ser vazia ou nula.");
+		} 
+		if(descricao.equals("") || descricao.trim() == "") {
+			throw new IllegalArgumentException("Erro na edicao de produto: descricao nao pode ser vazia ou nula.");
+		}
+
+		if(preco < 0) {
+			throw new IllegalArgumentException("Erro na edicao de produto: preco invalido.");
+		}
+		
+	}
+	
+	public void removeProduto(String nome, String descricao) {
+		if(nome == null) {
+			throw new NullPointerException("Erro na remocao de produto: nome nao pode ser vazio ou nulo.");
+		} 
+		if(nome.equals("") || nome.trim() == "") {
+			throw new IllegalArgumentException("Erro na remocao de produto: nome nao pode ser vazio ou nulo.");
+		}
+		if(descricao == null) {
+			throw new NullPointerException("Erro na remocao de produto: descricao nao pode ser vazia ou nula.");
+		} 
+		if(descricao.equals("") || descricao.trim() == "") {
+			throw new IllegalArgumentException("Erro na remocao de produto: descricao nao pode ser vazia ou nula.");
+		}
+	}
 }

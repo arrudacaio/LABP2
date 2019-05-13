@@ -24,7 +24,9 @@ public class ControleCliente {
 
 	public boolean  editaCadastraCliente(String cpf, String atributo, String novoValor) {
 		validacao.verificaEditaCadastraCliente(cpf, atributo, novoValor);
-		
+		if(!this.clientesCadastrados.containsKey(cpf)) {
+			throw new IllegalArgumentException("Erro na edicao do cliente: cliente nao existe.");
+		}
 		if(atributo.equals("nome")) {
 			if(this.clientesCadastrados.containsKey(cpf)) {
 				this.clientesCadastrados.get(cpf).setNome(novoValor);
@@ -56,7 +58,18 @@ public class ControleCliente {
 	}
 
 	public String imprimeCliente(String cpf) {
-		return this.clientesCadastrados.get(cpf).toString();
+		if(cpf == null ) {
+			throw new NullPointerException("Erro na edicao do cliente: cliente nao existe.");
+		} 
+		if(cpf.equals("") || cpf.trim() == "" ) {
+			throw new IllegalArgumentException("Erro na edicao do cliente: cliente nao existe.");
+		} else {
+			if(this.clientesCadastrados.containsKey(cpf)) {
+				return this.clientesCadastrados.get(cpf).toString();
+			}
+			throw new IllegalArgumentException("Erro na exibicao do cliente: cliente nao existe.");
+		}
+		
 	}
 
 	public String imprimeClientesCadastrados() {
