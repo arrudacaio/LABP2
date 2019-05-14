@@ -3,7 +3,7 @@ package LAB5;
 import java.util.HashMap;
 import java.util.Set;
 /**
- * Controle de Fornecedores
+ * Classe que representa um Controle de Fornecedores
  * @author Caio Arruda
  *
  */
@@ -39,11 +39,11 @@ public class ControleFornecedor {
 	 * @param telefone telefone do fornecedor
 	 * @return verdadeiro caso consiga cadastrar, se não, falso.
 	 */
-	public boolean cadastraFornecedor(String nome, String email, String telefone) {
+	public String cadastraFornecedor(String nome, String email, String telefone) {
 		this.validacao.verificaCadastraFornecedor(nome, email, telefone);
 		if (!this.fornecedorCadastrados.containsKey(nome)) {
 			this.fornecedorCadastrados.put(nome, new Fornecedor(nome, email, telefone));
-			return true;
+			return nome;
 		}
 		throw new IllegalArgumentException("Erro no cadastro de fornecedor: fornecedor ja existe.");
 	}
@@ -128,9 +128,7 @@ public class ControleFornecedor {
 
 	}
 
-	public Fornecedor getNomeF(String nome) {
-		return this.fornecedorCadastrados.get(nome);
-	}
+	
 	
 	/**
 	 * remove um produto a partir do seu nome, descrição e o nome do fornecedor associado.
@@ -160,8 +158,27 @@ public class ControleFornecedor {
 	 */
 	
 	public boolean editaProduto(String nome, String descricao, String fornecedor,double novoPreco) {
+		this.validacao.verificaFornecedor(fornecedor);
+		if(!this.fornecedorCadastrados.containsKey(fornecedor)) {
+			throw new IllegalArgumentException("Erro na edicao de produto: fornecedor nao existe.");
+		}
+		this.validacao.editaProduto(nome, descricao, novoPreco);
 		return this.fornecedorCadastrados.get(fornecedor).editaProduto(nome, descricao, novoPreco);
 		}
+	
+	public String exibeProduto(String nome, String descricao, String fornecedor) {
+		validacao.exibeProduto(nome, descricao, fornecedor);
+		if(!this.fornecedorCadastrados.containsKey(fornecedor)) {
+			throw new IllegalArgumentException("Erro na exibicao de produto: fornecedor nao existe.");
+		}
+		return this.fornecedorCadastrados.get(fornecedor).exibeProduto(nome, descricao);
+		
+	}
+	
+	public String imprimeTodosProdutos(String fornecedor) {
+		return this.fornecedorCadastrados.get(fornecedor).imprimeTodosProdutos();
+		
+	}
 	
 	/**
 	 * Cadastra produto a partir do nome do fornecedor e o nome, descrição e preço do produto

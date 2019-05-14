@@ -1,5 +1,7 @@
 package LAB5;
 
+import java.util.Collections;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 /**
@@ -113,9 +115,11 @@ public class ControleCliente {
 
 	public String imprimeClientesCadastrados() {
 		String result = "";
-		Set<String> chaves = this.clientesCadastrados.keySet();
-		for (String chave : chaves) {
-			result += this.clientesCadastrados.get(chave).toString() + " | ";
+		ArrayList<Cliente> clientesList = new ArrayList(this.clientesCadastrados.values());
+		Collections.sort(clientesList);
+		
+		for (Cliente cliente : clientesList) {
+			result += cliente.toString() + " | ";
 		}
 		if (result.equals("")) {
 			return "Nenhum cliente cadastrado";

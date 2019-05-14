@@ -1,6 +1,6 @@
 package LAB5;
 
-public class Cliente {
+public class Cliente implements Comparable<Cliente>{
 	private String nome;
 	private String email;
 	private String local;
@@ -70,6 +70,11 @@ public class Cliente {
 		} else if (!cpf.equals(other.cpf))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(Cliente o) {
+		return this.cpf.compareTo(o.cpf);
 	}
 
 }

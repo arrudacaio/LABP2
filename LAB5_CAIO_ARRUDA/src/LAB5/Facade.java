@@ -37,7 +37,7 @@ public class Facade {
 		return this.controleCliente.imprimeClientesCadastrados();
 	}
 	
-	public boolean adicionaFornecedor(String nome, String email, String telefone) {
+	public String adicionaFornecedor(String nome, String email, String telefone) {
 		return this.controleFornecedor.cadastraFornecedor(nome, email, telefone);
 	}
 	
@@ -62,11 +62,11 @@ public class Facade {
 	}
 	
 	public String exibeProduto(String nome, String descricao, String fornecedor) {
-		return this.controleFornecedor.getNomeF(fornecedor).exibeProduto(nome, descricao);
+		return this.controleFornecedor.exibeProduto(nome, descricao, fornecedor);
 	}
 	
-	public String imprimeTodosProdutos(String nome) {
-		return this.controleFornecedor.getNomeF(nome).imprimeTodosProdutos();
+	public String imprimeTodosProdutos(String fornecedor) {
+		return this.controleFornecedor.imprimeTodosProdutos(fornecedor);
 	}
 	
 	public boolean removeProduto(String nome, String descricao,String fornecedor) {

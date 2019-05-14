@@ -1,6 +1,6 @@
 package LAB5;
 /**
- * Produto
+ * Classe que representa um Produto
  * @author Caio Arruda
  *
  */
@@ -32,7 +32,7 @@ public class Produto {
 	}
 	
 	public String toString() {
-		return this.nome + " - " + this.descricao + " - R$" + String.format("%.2f", this.preco) + " ";
+		return this.nome + " - " + this.descricao + " - R$" + String.format("%.2f", this.preco);
 	}
 
 	public double getPreco() {

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Set;
 
 /**
- * Fornecedor 
+ * Classe que representa um Fornecedor 
  * @author Caio Arruda
  *
  */
@@ -119,7 +119,7 @@ public class Fornecedor {
 	 */
 	public String exibeProduto(String nomeProduto, String descricao) {
 		if(!this.mapaProdutos.containsKey(nomeProduto+descricao)){
-			throw new IllegalArgumentException("Erro na exibicao do produto: produto nao existe.");
+			throw new IllegalArgumentException("Erro na exibicao de produto: produto nao existe.");
 		}
 		return this.mapaProdutos.get(nomeProduto + descricao).toString();
 	}
@@ -144,11 +144,8 @@ public class Fornecedor {
 	 * @return verdadeiro caso consiga cadastrar, se não, falso
 	 */
 	public boolean removeProduto(String nome, String descricao) {
-		if(nome == null || "".equals(nome.trim())) {
-			throw new IllegalArgumentException("Erro na remocao de produto: nome nao pode ser vazio ou nulo.");
-		} else if (descricao == null || "".equals(descricao.trim())) {
-			throw new IllegalArgumentException("Erro na remocao de produto: descricao nao pode ser vazia ou nula.");
-		} else  if(!this.mapaProdutos.containsKey(nome+descricao)) {
+		this.valida.removeProduto(nome, descricao);
+		if(!this.mapaProdutos.containsKey(nome+descricao)) {
 		 		throw new IllegalArgumentException("Erro na remocao de produto: produto nao existe.");
 		 	} 
 			this.mapaProdutos.remove(nome+descricao);

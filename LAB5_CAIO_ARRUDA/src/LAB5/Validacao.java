@@ -134,6 +134,14 @@ public class Validacao {
 		}
 		
 	}
+	public void verificaFornecedor(String fornecedor) {
+		if(fornecedor == null) {
+			throw new NullPointerException("Erro na edicao de produto: fornecedor nao pode ser vazio ou nulo.");
+		} 
+		if(fornecedor.equals("") || fornecedor.trim() == "") {
+			throw new IllegalArgumentException("Erro na edicao de produto: fornecedor nao pode ser vazio ou nulo.");
+		}
+	}
   
 	public void editaProduto(String nome, String descricao, double preco) {
 		if(nome == null) {
@@ -169,6 +177,29 @@ public class Validacao {
 			throw new IllegalArgumentException("Erro na remocao de produto: descricao nao pode ser vazia ou nula.");
 		}
 	}
+	
+	public void exibeProduto(String nome, String descricao, String fornecedor) {
+		if(nome == null) {
+			throw new NullPointerException("Erro na exibicao de produto: nome nao pode ser vazio ou nulo.");
+		} 
+		if(nome.equals("") || nome.trim() == "") {
+			throw new IllegalArgumentException("Erro na exibicao de produto: nome nao pode ser vazio ou nulo.");
+		}
+		if(descricao == null) {
+			throw new NullPointerException("Erro na exibicao de produto: descricao nao pode ser vazia ou nula.");
+		} 
+		if(descricao.equals("") || descricao.trim() == "") {
+			throw new IllegalArgumentException("Erro na exibicao de produto: descricao nao pode ser vazia ou nula.");
+		}
+		if(fornecedor == null) {
+			throw new NullPointerException("Erro na exibicao de produto: fornecedor nao pode ser vazio ou nulo.");
+		} 
+		if(fornecedor.equals("") || fornecedor.trim() == "") {
+			throw new IllegalArgumentException("Erro na exibicao de produto: fornecedor nao pode ser vazio ou nulo.");
+		}
+	}
+	
+	
 	
 	public void imprimeFornecedor(String nome) {
 		if(nome == null) {
