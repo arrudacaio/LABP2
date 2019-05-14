@@ -169,4 +169,14 @@ public class Validacao {
 			throw new IllegalArgumentException("Erro na remocao de produto: descricao nao pode ser vazia ou nula.");
 		}
 	}
+	
+	public void imprimeFornecedor(String nome) {
+		if(nome == null) {
+			throw new NullPointerException("Erro na exibicao do fornecedor: fornecedor nao existe.");
+		} 
+		if(nome.equals("") || nome.trim() == "") {
+			throw new IllegalArgumentException("Erro na exibicao do fornecedor: fornecedor nao existe.");
+		}
+		
+	}
 }

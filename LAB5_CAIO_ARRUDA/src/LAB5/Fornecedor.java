@@ -3,13 +3,38 @@ package LAB5;
 import java.util.HashMap;
 import java.util.Set;
 
+/**
+ * Fornecedor 
+ * @author Caio Arruda
+ *
+ */
 public class Fornecedor {
+	/**
+	 * nome do fornecedor
+	 */
 	private String nome;
+	/**
+	 * email do fornecedor
+	 */
 	private String email;
+	/**
+	 * telefone do fornecedor
+	 */
 	private String telefone;
+	/**
+	 * mapa dos produtos
+	 */
 	private HashMap<String, Produto> mapaProdutos;
+	/**
+	 * valida os métodos
+	 */
 	private Validacao valida;
-
+	/**
+	 * Constrói um fornecedor a partir do seu nome, email e telefone
+	 * @param nome nome do fornecedor
+	 * @param email email do fornecedor
+	 * @param telefone telefone do fornecedor
+	 */
 	public Fornecedor(String nome, String email, String telefone) {
 		this.nome = nome;
 		this.email = email;
@@ -68,6 +93,14 @@ public class Fornecedor {
 		return true;
 	}
 
+	/**
+	 * Cadastra o produto a partir do seu nome,descricao e preço
+	 * @param nome nome do produto
+	 * @param descricao descricao do produto
+	 * @param preco preço do produto
+	 * @return true se der certo, false ,se não
+	 */
+	
 	public boolean cadastraProdutos(String nome, String descricao, double preco) {
 		
 		if (this.mapaProdutos.containsKey(nome+descricao)) {
@@ -78,11 +111,22 @@ public class Fornecedor {
 		
 	}
 
+	/**
+	 * Exibe o produto a partir do seu identificador(nome e descricao)
+	 * @param nomeProduto nome do produto
+	 * @param descricao descricao do produto
+	 * @return representação textual de um produto
+	 */
 	public String exibeProduto(String nomeProduto, String descricao) {
-		
+		if(!this.mapaProdutos.containsKey(nomeProduto+descricao)){
+			throw new IllegalArgumentException("Erro na exibicao do produto: produto nao existe.");
+		}
 		return this.mapaProdutos.get(nomeProduto + descricao).toString();
 	}
-	
+	/**
+	 * Imprime todos os produtos do fornecedor.
+	 * @return representação textual dos produtos
+	 */
 	public String imprimeTodosProdutos() {
 		String result = "";
 		Set<String> chaves = this.mapaProdutos.keySet();
@@ -93,7 +137,12 @@ public class Fornecedor {
 		return result;
 	}
 
-	
+	/**
+	 * Remove o produto de um fornecedor a partir do seu identificador(nome + descrição)
+	 * @param nome do produto
+	 * @param descricao descrição do produto
+	 * @return verdadeiro caso consiga cadastrar, se não, falso
+	 */
 	public boolean removeProduto(String nome, String descricao) {
 		if(nome == null || "".equals(nome.trim())) {
 			throw new IllegalArgumentException("Erro na remocao de produto: nome nao pode ser vazio ou nulo.");
@@ -106,6 +155,13 @@ public class Fornecedor {
 			return true;
 		
 	}
+	/**
+	 * Edita produto a partir do seu nome, descrição e o novo preço
+	 * @param nome nome do produto
+	 * @param descricao descrição do produto
+	 * @param novoPreco novo preço do produto
+	 * @return verdadeiro caso consiga cadastrar, se não, falso
+	 */
 	
 	public boolean editaProduto(String nome, String descricao, double novoPreco) {
 		valida.editaProduto(nome, descricao, novoPreco);

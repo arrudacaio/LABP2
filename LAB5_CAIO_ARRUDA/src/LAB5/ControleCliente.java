@@ -2,16 +2,36 @@ package LAB5;
 
 import java.util.HashMap;
 import java.util.Set;
-
+/**
+ * Controle de CLientes
+ * @author Caio Arruda
+ *
+ */
 public class ControleCliente {
+	/**
+	 * mapa de clientes cadastrados
+	 */
 	private HashMap<String, Cliente> clientesCadastrados;
+	/**
+	 * validação para validar os parametros dos métodos
+	 */
 	private Validacao validacao;
-
+	/**
+	 * Constrói um controle de cliente 
+	 */
 	public ControleCliente() {
 		this.clientesCadastrados = new HashMap<>();
 		this.validacao = new Validacao();
 	}
 
+	/** 
+	 * Cadastra um cliente a partir do seu nome, email, localização e cpf
+	 * @param nome nome do cliente
+	 * @param email email do cliente
+	 * @param local local do cliente 
+	 * @param cpf cpf do cliente
+	 * @return retorna o cpf do cliente caso seja cadastrado
+	 */
 	public String cadastraCliente(String nome, String email, String local, String cpf) {
 		validacao.verificaCadastraCliente(cpf,nome, email, local);
 		if (!this.clientesCadastrados.containsKey(cpf)) {
@@ -22,6 +42,13 @@ public class ControleCliente {
 
 	}
 
+	/**
+	 * Edita cadastro de um cliente a partir do seu cpf, atributo que quer mudar e o novo valor para esse atributo
+	 * @param cpf cpf do cliente 
+	 * @param atributo atributo a ser mudado
+	 * @param novoValor novo valor a ser colocado.
+	 * @return verdadeiro caso edite,se não, falso.
+	 */
 	public boolean  editaCadastraCliente(String cpf, String atributo, String novoValor) {
 		validacao.verificaEditaCadastraCliente(cpf, atributo, novoValor);
 		if(!this.clientesCadastrados.containsKey(cpf)) {
@@ -47,7 +74,11 @@ public class ControleCliente {
 		}
 		return false;
 	}
-
+	/**
+	 * Remove cliente cadastrado a partir do seu cpf
+	 * @param cpf cpf do cliente 
+	 * @return verdadeiro caso cadastre,se não, falso.
+	 */
 	public boolean removeClienteCadastrado(String cpf) {
 		if(!this.clientesCadastrados.containsKey(cpf)) {
 			throw new IllegalArgumentException("Cpf não cadastrado.");
@@ -56,7 +87,11 @@ public class ControleCliente {
 			return true;
 		}
 	}
-
+	/**
+	 * Imprime cliente a partir do seu cpf
+	 * @param cpf cpf do cliente
+	 * @return representação textual do cliente
+	 */
 	public String imprimeCliente(String cpf) {
 		if(cpf == null ) {
 			throw new NullPointerException("Erro na edicao do cliente: cliente nao existe.");
@@ -71,6 +106,10 @@ public class ControleCliente {
 		}
 		
 	}
+	/**
+	 * Imprime clientes cadastrados
+	 * @return representação textual dos clientes
+	 */
 
 	public String imprimeClientesCadastrados() {
 		String result = "";
