@@ -5,7 +5,7 @@ package LAB5;
  *
  */
 
-public class Produto {
+public class Produto implements Comparable<Produto>{
 	/**
 	 * nome do produto
 	 */
@@ -49,6 +49,11 @@ public class Produto {
 
 	public String getDescricao() {
 		return descricao;
+	}
+
+	@Override
+	public int compareTo(Produto o) {
+		return this.nome.trim().toUpperCase().compareTo(o.nome.trim().toUpperCase());
 	}
 
 	

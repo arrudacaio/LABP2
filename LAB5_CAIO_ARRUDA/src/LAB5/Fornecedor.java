@@ -1,5 +1,7 @@
 package LAB5;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -8,7 +10,7 @@ import java.util.Set;
  * @author Caio Arruda
  *
  */
-public class Fornecedor {
+public class Fornecedor implements Comparable<Fornecedor> {
 	/**
 	 * nome do fornecedor
 	 */
@@ -129,12 +131,14 @@ public class Fornecedor {
 	 */
 	public String imprimeTodosProdutos() {
 		String result = "";
-		Set<String> chaves = this.mapaProdutos.keySet();
-		for (String produto: chaves) {
-			result+= this.mapaProdutos.get(produto).toString() + " | ";
+		ArrayList<Produto> chaves = new ArrayList(this.mapaProdutos.values());
+		
+		Collections.sort(chaves);
+		for (Produto produto: chaves) {
+			result+= getNome()+ " - " + produto.toString() + " | ";
 		}
-		result.substring(0,result.length()-3);
-		return result;
+		
+		return result.substring(0,result.length()-3);
 	}
 
 	/**
@@ -165,6 +169,11 @@ public class Fornecedor {
 		this.mapaProdutos.get(nome+descricao).setPreco(novoPreco);
 		return true;
 	}
-	
+
+
+	@Override
+	public int compareTo(Fornecedor o) {
+		return this.nome.trim().toLowerCase().compareTo(o.nome.trim().toLowerCase());
+	}
 }
 

@@ -1,5 +1,7 @@
 package LAB5;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Set;
 /**
@@ -116,9 +118,10 @@ public class ControleFornecedor {
 	 */
 	public String imprimefornecedorCadastrados() {
 		String result = "";
-		Set<String> chaves = this.fornecedorCadastrados.keySet();
-		for (String nome : chaves) {
-			result += this.fornecedorCadastrados.get(nome).toString() + " | ";
+		ArrayList<Fornecedor> fornecedorList = new ArrayList(this.fornecedorCadastrados.values());
+		Collections.sort(fornecedorList);
+		for (Fornecedor nome : fornecedorList) {
+			result += nome.toString() + " | ";
 		}
 		if (result.equals("")) {
 			return "Nenhum fornecedor cadastrado";
@@ -176,6 +179,9 @@ public class ControleFornecedor {
 	}
 	
 	public String imprimeTodosProdutos(String fornecedor) {
+		if(fornecedor == null || fornecedor.equals("") || fornecedor.trim() == "") {
+			throw new NullPointerException("Erro na exibicao de produto: fornecedor nao pode ser vazio ou nulo.");
+		} 
 		return this.fornecedorCadastrados.get(fornecedor).imprimeTodosProdutos();
 		
 	}

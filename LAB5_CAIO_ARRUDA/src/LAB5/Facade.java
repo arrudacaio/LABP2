@@ -5,7 +5,7 @@ import easyaccept.EasyAccept;
 public class Facade {
 	
 	public static void main(String[] args) {
-		args = new String[] {"LAB5.Facade", "Easyaccept/use_case_1.txt", "Easyaccept/use_case_2.txt", "Easyaccept/use_case_3.txt"};
+		args = new String[] {"LAB5.Facade", "Easyaccept/use_case_1.txt", "Easyaccept/use_case_2.txt", "Easyaccept/use_case_3.txt" , "Easyaccept/use_case_4.txt"};
 		EasyAccept.main(args);
 	}
 	
@@ -33,7 +33,7 @@ public class Facade {
 		return this.controleCliente.imprimeCliente(cpf);
 	}
 
-	public String imprimeClientesCadastrados() {
+	public String exibeClientes() {
 		return this.controleCliente.imprimeClientesCadastrados();
 	}
 	
@@ -53,7 +53,7 @@ public class Facade {
 		return this.controleFornecedor.imprimeFornecedor(nome);
 	}
 	
-	public String imprimeFornecedorCadastrados() {
+	public String exibeFornecedores() {
 		return this.controleFornecedor.imprimefornecedorCadastrados();
 	}
 	
@@ -65,7 +65,7 @@ public class Facade {
 		return this.controleFornecedor.exibeProduto(nome, descricao, fornecedor);
 	}
 	
-	public String imprimeTodosProdutos(String fornecedor) {
+	public String exibeProdutosFornecedor(String fornecedor) {
 		return this.controleFornecedor.imprimeTodosProdutos(fornecedor);
 	}
 	

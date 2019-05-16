@@ -74,7 +74,7 @@ public class Cliente implements Comparable<Cliente>{
 
 	@Override
 	public int compareTo(Cliente o) {
-		return this.cpf.compareTo(o.cpf);
+		return this.nome.trim().toUpperCase().compareTo(o.nome.trim().toUpperCase());
 	}
 
 }
