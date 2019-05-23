@@ -69,6 +69,10 @@ public class Facade {
 		return this.controleFornecedor.imprimeTodosProdutos(fornecedor);
 	}
 	
+	public String exibeProdutos() {
+		return this.controleFornecedor.exibeProdutos();
+	}
+	
 	public boolean removeProduto(String nome, String descricao,String fornecedor) {
 		return this.controleFornecedor.removeProduto(nome, descricao,fornecedor);
 	}

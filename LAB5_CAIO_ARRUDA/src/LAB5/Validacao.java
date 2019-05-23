@@ -103,7 +103,7 @@ public class Validacao {
 	
 	public void verificaRemoveFornecedor(String nome) {
 		if(nome == null) {
-			throw new NullPointerException("Erro na remocao do fornecedor: nome do fornecedor nao pode ser nulo.");
+			throw new NullPointerException("Erro na remocao do fornecedor: nome do fornecedor nao pode ser vazio.");
 		} 
 		if(nome.equals("") || nome.trim() == "") {
 			throw new IllegalArgumentException("Erro na remocao do fornecedor: nome do fornecedor nao pode ser vazio.");

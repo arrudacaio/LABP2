@@ -120,6 +120,7 @@ public class Fornecedor implements Comparable<Fornecedor> {
 	 * @return representação textual de um produto
 	 */
 	public String exibeProduto(String nomeProduto, String descricao) {
+		
 		if(!this.mapaProdutos.containsKey(nomeProduto+descricao)){
 			throw new IllegalArgumentException("Erro na exibicao de produto: produto nao existe.");
 		}
@@ -131,14 +132,18 @@ public class Fornecedor implements Comparable<Fornecedor> {
 	 */
 	public String imprimeTodosProdutos() {
 		String result = "";
-		ArrayList<Produto> chaves = new ArrayList(this.mapaProdutos.values());
-		
-		Collections.sort(chaves);
-		for (Produto produto: chaves) {
-			result+= getNome()+ " - " + produto.toString() + " | ";
+		ArrayList<Produto> produtos = new ArrayList(this.mapaProdutos.values());
+		Collections.sort(produtos);
+		for (Produto produto: produtos) {
+			result += getNome()+ " - " + produto.toString() + " | ";
+		}
+		if (!result.equals("")) {
+			result = result.substring(0,result.length()-3);
+		} else {
+			result += getNome() + " -";
 		}
 		
-		return result.substring(0,result.length()-3);
+		return result;
 	}
 
 	/**
